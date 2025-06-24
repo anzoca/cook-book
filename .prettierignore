@@ -1,0 +1,15 @@
+# Ignore artifacts:
+.next/
+build/
+out/
+node_modules/
+dist/
+coverage/
+
+# Ignore dotfiles (except config files themselves)
+.git/
+.env*
+.DS_Store
+
+# Next.js specific ignore
+public/
