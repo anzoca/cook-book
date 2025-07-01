@@ -1,5 +1,15 @@
 import './globals.css';
-import Navbar from '@/components/Navbar';
+import { Inter, Lora } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter', // Use CSS variables for Tailwind
+});
+
+const lora = Lora({
+  subsets: ['latin'],
+  variable: '--font-lora',
+});
 
 export default function RootLayout({
   children,
@@ -7,13 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <div className="flex">
-          {/* <Navbar /> */}
-          {children}
-        </div>
-      </body>
+    <html
+      lang="en"
+      className={`${inter.variable} ${lora.variable} antialiased`}
+    >
+      <body>{children}</body>
     </html>
   );
 }

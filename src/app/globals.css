@@ -1,15 +1,46 @@
 @import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-warm-gray-50: #F9F7F3; /* Very light, slightly warm background (main app background) */
+  --color-warm-gray-100: #EAE7E2; /* Light border/hover/subtle background for skeletons, sidebar borders, inactive nav hover */
+  --color-warm-gray-700: #666666; /* Medium text for secondary descriptions, inactive nav text */
+  --color-warm-gray-900: #333333; /* Dark text for primary headings and body */
+  --color-warm-gray-dark-50: #1A1A1A; /* Darkest background for app */
+  --color-warm-gray-dark-100: #2C2C2C; /* Darker background for cards/panels, sidebar, dark skeleton */
+  --color-warm-gray-dark-700: #CCCCCC; /* Lighter text for secondary descriptions */
+  --color-warm-gray-dark-900: #F0F0F0; /* Lightest text for primary headings and body */
+
+  --color-accent-teal-50: #E0F2F7; /* Very light tint for active navigation item background */
+  --color-accent-teal-500: #2C7A7B; /* Main accent: Primary buttons (unfocused), logo accent, active navigation text */
+  --color-accent-teal-600: #225E5F; /* Darker accent: Primary button hover/focused, darker active navigation text */
+  --color-accent-teal-dark-50: #1A3636; /* Dark background for active nav item */
+  --color-accent-teal-dark-500: #4FD1C5; /* Main accent for dark mode (brighter teal) */
+  --color-accent-teal-dark-600: #319795; /* Darker accent for hover/active on dark */
+
+  --color-accent-peach-50: #FFD9D2; /* Light background for labels/tags (adjusted for visibility) */
+  --color-accent-peach-500: #D46A6A; /* Main accent: Text for labels/tags (adjusted for visibility) */
+  --color-accent-peach-dark-50: #4A2A2A; /* Dark background for labels/tags */
+  --color-accent-peach-dark-500: #FFD4D0; /* Lighter peach for text on dark */
+
+  --color-red-50: #FEE2E2; /* Lightest red: Background for error messages */
+  --color-red-500: #EF4444; /* Standard red: Delete/Danger buttons (unfocused) */
+  --color-red-600: #DC2626; /* Darker red: Delete/Danger buttons (hover/focused) */
+  --color-red-700: #B91C1C; /* Darkest red: Text and icons for error messages */
+  --color-red-dark-50: #4A0E0E; /* Dark red background for error messages */
+  --color-red-dark-500: #F87171; /* Lighter red for buttons on dark */
+  --color-red-dark-600: #EF4444; /* Standard red for hover on dark */
+  --color-red-dark-700: #FCA5A5; /* Lighter red for text/icons on dark */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-warm-gray-50);
+  --color-foreground: var(--color-warm-gray-900);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-lora);
+  /* --font-inter: var();
+  --font-lora: var(); */
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -20,7 +51,6 @@
 } */
 
 body {
-  background: var(--background);
+  background: var(--color-warm-gray-50);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

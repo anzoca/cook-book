@@ -1,19 +1,43 @@
 /* 
     Card component for displaying content in a card format.
 */
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
 
-const Card = ({ name, image, labels }: CardType) => {
+const Card = ({ id, name, image, labels, handleCardClick }: CardType) => {
   const firstThreeLabels = labels.slice(0, 3);
+
   return (
-    <div className="flex flex-col justify-items-center items-center bg-amber-100 shadow-md rounded-lg p-6 min-w-xs max-w-sm min-h-60 max-h">
-      <h2 className="text-xl font-semibold">{name}</h2>
-      <p className="my-8">Image</p>
-      <div>
-        {firstThreeLabels.map((label) => {
-          return <p className="mt-auto">{label.name}</p>;
-        })}
+    <Link
+      href={`/recipe/${id}`}
+      className="no-underline"
+      onClick={handleCardClick}
+    >
+      <div className="flex flex-col gap-1 justify-center items-center w-xs h-60 p-4 bg-amber-100 shadow-md rounded-lg">
+        <h2 className="max-h-[28px] text-xl text-center text-wrap font-semibold">
+          {name}
+        </h2>
+        {image && (
+          <Image
+            src={image}
+            alt="dish image"
+            width={200}
+            height={200}
+            className={'w-[200px] h-auto rounded-lg'}
+          />
+        )}
+        <div className="flex w-full justify-evenly">
+          {firstThreeLabels.map((label, index) => {
+            return (
+              <p key={`${label.name}-${index}`} className="mt-auto">
+                {label.name}
+              </p>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
