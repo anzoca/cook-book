@@ -3,54 +3,69 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-warm-gray-50: #F9F7F3; /* Very light, slightly warm background (main app background) */
-  --color-warm-gray-100: #EAE7E2; /* Light border/hover/subtle background for skeletons, sidebar borders, inactive nav hover */
-  --color-warm-gray-700: #666666; /* Medium text for secondary descriptions, inactive nav text */
-  --color-warm-gray-900: #333333; /* Dark text for primary headings and body */
-  --color-warm-gray-dark-50: #1A1A1A; /* Darkest background for app */
-  --color-warm-gray-dark-100: #2C2C2C; /* Darker background for cards/panels, sidebar, dark skeleton */
-  --color-warm-gray-dark-700: #CCCCCC; /* Lighter text for secondary descriptions */
-  --color-warm-gray-dark-900: #F0F0F0; /* Lightest text for primary headings and body */
-
-  --color-accent-teal-50: #E0F2F7; /* Very light tint for active navigation item background */
-  --color-accent-teal-500: #2C7A7B; /* Main accent: Primary buttons (unfocused), logo accent, active navigation text */
-  --color-accent-teal-600: #225E5F; /* Darker accent: Primary button hover/focused, darker active navigation text */
-  --color-accent-teal-dark-50: #1A3636; /* Dark background for active nav item */
-  --color-accent-teal-dark-500: #4FD1C5; /* Main accent for dark mode (brighter teal) */
-  --color-accent-teal-dark-600: #319795; /* Darker accent for hover/active on dark */
-
-  --color-accent-peach-50: #FFD9D2; /* Light background for labels/tags (adjusted for visibility) */
-  --color-accent-peach-500: #D46A6A; /* Main accent: Text for labels/tags (adjusted for visibility) */
-  --color-accent-peach-dark-50: #4A2A2A; /* Dark background for labels/tags */
-  --color-accent-peach-dark-500: #FFD4D0; /* Lighter peach for text on dark */
-
-  --color-red-50: #FEE2E2; /* Lightest red: Background for error messages */
-  --color-red-500: #EF4444; /* Standard red: Delete/Danger buttons (unfocused) */
-  --color-red-600: #DC2626; /* Darker red: Delete/Danger buttons (hover/focused) */
-  --color-red-700: #B91C1C; /* Darkest red: Text and icons for error messages */
-  --color-red-dark-50: #4A0E0E; /* Dark red background for error messages */
-  --color-red-dark-500: #F87171; /* Lighter red for buttons on dark */
-  --color-red-dark-600: #EF4444; /* Standard red for hover on dark */
-  --color-red-dark-700: #FCA5A5; /* Lighter red for text/icons on dark */
+  --color-primary-light: #F9F7F3;
+  --color-primary-dark: #1A1A1A;
+  --color-comp-light: #FFFFFF;
+  --color-comp-dark: #2C2C2C;
+  --color-txt-primary-light: #333333;
+  --color-txt-primary-dark: #F0F0F0;
+  --color-txt-secondary-light: #666666;
+  --color-txt-secondary-dark: #CCCCCC;
+  --color-accent-teal: #2C7A7B;
+  --color-accent-teal-light: #4FD1C5;
+  --color-accent-teal-dark: #225E5F;
+  --color-accent-teal-darker: #319795;
+  --color-warm-gray-soft: #EAE7E2;
+  --color-warm-gray-dark: #424242;
+  --color-teal-light-bg: #E0F2F7;
+  --color-teal-dark-bg: #1A3636;
+  --color-error-red: #EF4444;
+  --color-error-light-bg: #FEE2E2;
+  --color-error-light-txt: #B91C1C;
+  --color-error-red-darker: #DC2626;
+  --color-error-dark-bg: #4A0E0E;
+  --color-error-dark-accent: #F87171;
+  --color-error-dark-txt: #FCA5A5;
+  --color-label-pink-bg: #FFD9D2;
+  --color-label-red-txt: #D46A6A;
+  --color-label-dark-bg: #4A2A2A;
+  --color-label-dark-txt: #FFD4D0;
+  --color-soft-blue-gray: #DCE3E8;
+  --color-gray-dark-hvr: #555555;
 }
 
 @theme inline {
-  --color-background: var(--color-warm-gray-50);
-  --color-foreground: var(--color-warm-gray-900);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-lora);
-  /* --font-inter: var();
-  --font-lora: var(); */
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
 
-body {
-  background: var(--color-warm-gray-50);
-  color: var(--foreground);
+@layer base {
+  :root {
+  @apply  bg-primary-light text-txt-primary-light dark:bg-primary-dark dark:text-txt-primary-dark;
+}
+}
+
+@layer utilities {
+
+
+  .navbar {
+    @apply 
+      w-64 flex flex-col h-screen  bg-comp-light border-r border-gray-200 pt-8 
+      max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px] dark:bg-comp-dark 
+      dark:border-comp-dark;
+  }
+
+  .navbar-item {
+    @apply flex items-center px-4 py-1.5 rounded-lg text-base font-medium transition-colors duration-200;
+  }
+
+  .navbar-item.active {
+    @apply bg-teal-light-bg text-accent-teal-dark font-semibold dark:bg-teal-dark-bg dark:text-accent-teal-light;
+  }
+
+  .navbar-item.not-active {
+    @apply text-txt-secondary-light hover:bg-warm-gray-soft hover:text-txt-primary-light dark:text-txt-secondary-dark
+     dark:hover:bg-primary-dark dark:hover:text-txt-primary-dark;
+  }
 }
